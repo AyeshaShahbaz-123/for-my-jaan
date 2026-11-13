@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Ayesha Loves Ayna</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+body{font-family:'Poppins',sans-serif;background:#0a0a12;color:white;text-align:center;overflow:hidden}
+.page{position:relative;width:100%;height:100vh;display:none;justify-content:center;align-items:center;overflow:hidden}
+.page.active{display:flex;animation:fade 0.7s ease}
+@keyframes fade{from{opacity:0;transform:scale(1.03)}to{opacity:1;transform:scale(1)}}
+.page img.bg{position:absolute;width:100%;height:100%;object-fit:cover;filter:brightness(0.7)}
+.overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(0,0,0,0.1),rgba(255,46,99,0.2),rgba(0,0,0,0.92))}
+.glass{position:relative;z-index:5;width:92%;max-width:480px;max-height:90vh;overflow-y:auto;background:rgba(255,255,255,0.12);backdrop-filter:blur(14px);border:1px solid rgba(255,255,255,0.25);border-radius:28px;padding:24px 18px;box-shadow:0 20px 60px rgba(0,0,0,0.5)}
+.badge{display:inline-block;padding:7px 16px;border-radius:30px;background:rgba(255,255,255,0.2);font-size:12px;letter-spacing:2px}
+h1{font-family:'Playfair Display',serif;font-size:32px;line-height:1.2;margin:12px 0;background:linear-gradient(90deg,#ff9ec6,#ffd166,#ff9ec6);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.names{font-size:23px;font-weight:600}
+.names span{color:#ff5e8a}
+p{font-size:17px;line-height:1.8}
+.small{font-size:13px;opacity:0.85;line-height:1.6}
+.count{font-size:52px;font-family:'Playfair Display',serif;color:#ffd166}
+.divider{width:60px;height:3px;background:linear-gradient(90deg,#ff2e63,#ffd166);margin:12px auto;border-radius:10px}
+.caption{font-size:15px;line-height:1.9;background:rgba(255,255,255,0.1);padding:16px;border-radius:20px;text-align:left}
+button{width:100%;padding:14px;border:none;border-radius:50px;font-size:16px;font-weight:600;cursor:pointer;margin-top:12px}
+.btn-pink{background:linear-gradient(90deg,#ff2e63,#ff7a5c);color:white;box-shadow:0 10px 25px rgba(255,46,99,0.4)}
+.btn-white{background:white;color:#ff2e63}
+.btn-gold{background:linear-gradient(90deg,#ffd166,#ff9ec6);color:#111}
+.btn-ghost{background:transparent;color:white;border:1px solid rgba(255,255,255,0.4)}
+.timer{display:flex;justify-content:center;gap:8px;margin:14px 0}
+.t-box{background:rgba(255,255,255,0.15);border-radius:16px;padding:10px 0;width:70px}
+.t-num{font-size:24px;font-weight:600;color:#ffd166}
+.t-label{font-size:10px;letter-spacing:1px;opacity:0.8}
+.dots{display:flex;justify-content:center;gap:8px;margin-top:14px}
+.dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,0.35)}
+.dot.on{background:#ff2e63;width:22px;border-radius:20px}
+.balloon{position:absolute;bottom:-80px;width:55px;height:70px;border-radius:50% 50% 50% 50% / 55% 55% 45% 45%;cursor:pointer;z-index:4;display:flex;align-items:center;justify-content:center;font-size:20px;animation:floatUp 7s linear infinite}
+.balloon:after{content:'';position:absolute;bottom:-18px;left:50%;width:2px;height:18px;background:white}
+@keyframes floatUp{0%{transform:translateY(0)}100%{transform:translateY(-115vh)}}
+.pop{animation:pop 0.3s forwards !important}
+@keyframes pop{to{transform:scale(1.6);opacity:0}}
+.cake-wrap{font-size:90px;cursor:pointer;line-height:1}
+#cakeMsg{display:none;font-size:20px;color:#ffd166;font-weight:600;margin-top:8px}
+.confetti{position:fixed;top:-10px;z-index:99;pointer-events:none;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(110vh) rotate(720deg)}}
+.hint{font-size:12px;opacity:0.8;margin-top:6px}
+.gallery{display:flex;gap:10px;justify-content:center;margin:12px 0}
+.gallery img{width:31%;height:110px;object-fit:cover;border-radius:14px;border:2px solid white;cursor:pointer}
+</style>
+</head>
+<body>
+
+<!-- PAGE 1 -->
+<div class="page active" id="page1">
+<img class="bg" src="pic1.jpg"><div class="overlay"></div>
+<div class="balloon" style="left:8%;background:#ff2e63" onclick="popBalloon(this)">🎈</div>
+<div class="balloon" style="left:28%;background:#ffd166;animation-delay:1.5s" onclick="popBalloon(this)">🎈</div>
+<div class="balloon" style="left:65%;background:#7a5cff;animation-delay:0.8s" onclick="popBalloon(this)">🎈</div>
+<div class="balloon" style="left:85%;background:#00c9a7;animation-delay:2.2s" onclick="popBalloon(this)">🎈</div>
+<div class="glass">
+<span class="badge">✨ FOR MY EVERMORE ✨</span>
+<p class="names" style="margin-top:12px">Ayesha <span>🫀</span> Ayna</p>
+<h1>Two Months Left...</h1>
+<div class="count">30 January</div>
+<p class="small">JUST WAITING FOR YOUR DAY</p>
+<div class="divider"></div>
+<div class="timer">
+<div class="t-box"><div class="t-num" id="d">00</div><div class="t-label">DAYS</div></div>
+<div class="t-box"><div class="t-num" id="h">00</div><div class="t-label">HOURS</div></div>
+<div class="t-box"><div class="t-num" id="m">00</div><div class="t-label">MINS</div></div>
+<div class="t-box"><div class="t-num" id="s">00</div><div class="t-label">SECS</div></div>
+</div>
+<p class="hint">👆 TAP THE BALLOONS! THEY WILL POP!</p>
+<p>Waiting for the day my Ayna came into this world.</p>
+<button class="btn-pink" onclick="go2()">Next Page ➡️</button>
+<div class="dots"><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+<p class="small">MADE WITH LOVE • BY AYESHA</p>
+</div>
+</div>
+
+<!-- PAGE 2 -->
+<div class="page" id="page2">
+<img class="bg" src="pic2.jpg"><div class="overlay"></div>
+<div class="balloon" style="left:12%;background:#ff2e63" onclick="popBalloon(this)">🎈</div>
+<div class="balloon" style="left:80%;background:#ffd166;animation-delay:1s" onclick="popBalloon(this)">🎈</div>
+<div class="glass">
+<span class="badge">💖 FIRST TIME 💖</span>
+<p class="names" style="margin-top:10px">From Ayesha To Ayna</p>
+<h1>Pehli Pehli Waar<br>Dil Haari...</h1>
+<p>When I saw you, my heart said,<br>She is my whole world.</p>
+<button class="btn-pink" onclick="play1()">▶️ PLAY SOUND 1 🎵</button>
+<button class="btn-white" onclick="go3()">Next Page - For You ➡️</button>
+<button class="btn-ghost" onclick="go1()">⬅️ Back</button>
+<div class="dots"><div class="dot"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div></div>
+</div>
+</div>
+
+<!-- PAGE 3 -->
+<div class="page" id="page3">
+<img class="bg" src="pic3.jpg"><div class="overlay"></div>
+<div class="glass">
+<span class="badge">🎂 ADVANCE HAPPY BIRTHDAY 🎂</span>
+<h1>My Ayna, My World 🤍</h1>
+<div class="caption">
+<b>Dear Ayna,</b><br><br>
+Still 2 months left, but my heart already wants to wish you.<br><br>
+You are not just my friend. You are my happiness, my sadness, my every secret.<br><br>
+May Allah keep you always smiling, protect you from every evil eye, fulfill all your dreams, and give you a long, happy and successful life. Ameen 🤲<br><br>
+You are so special. A friend like you is found by lucky people, and I am lucky that you are mine.<br><br>
+<b>Advance Happy Birthday My Ayna! 💖🫀💍💋</b><br>Your Ayesha
+</div>
+<div class="gallery">
+<img src="pic4.jpg" onclick="openPic('pic4.jpg')">
+<img src="pic5.jpg" onclick="openPic('pic5.jpg')">
+<img src="pic6.jpg" onclick="openPic('pic6.jpg')">
+</div>
+<p class="hint">Tap any photo to see it big 👆</p>
+<button class="btn-pink" onclick="go4()">See Happy Ending ➡️</button>
+<button class="btn-ghost" onclick="go2()">⬅️ Back</button>
+<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot on"></div><div class="dot"></div><div class="dot"></div></div>
+</div>
+</div>
+
+<!-- PAGE 4 -->
+<div class="page" id="page4">
+<img class="bg" src="pic7.jpg"><div class="overlay"></div>
+<div class="glass">
+<span class="badge">✨ HAPPY ENDING ✨</span>
+<p class="names" style="margin-top:10px">Ayesha <span>🫀</span> Ayna</p>
+<h1>One Person Can Be<br>The Whole World</h1>
+<p>I used to think, how can someone be so lovely?<br>Then I saw you and I understood, yes it is possible.</p>
+<div class="divider"></div>
+<p><b>🎂 TAP THE CAKE TO CUT IT! 🎂</b></p>
+<div class="cake-wrap" id="cake" onclick="cutCake()">🎂</div>
+<div id="cakeMsg">🎉 HAPPY BIRTHDAY AYNA! 🎉<br>Cut By Ayesha 🫀💍💋</div>
+<button class="btn-gold" onclick="play2()">▶️ PLAY LAST SOUND 🎵</button>
+<button class="btn-white" onclick="go5()">See All Photos 📸</button>
+<button class="btn-ghost" onclick="go1()">Start Again 🔁</button>
+<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot on"></div><div class="dot"></div></div>
+<p class="small">FOREVER • AYESHA 🫀 AYNA</p>
+</div>
+</div>
+
+<!-- PAGE 5 -->
+<div class="page" id="page5">
+<img class="bg" src="pic6.jpg"><div class="overlay"></div>
+<div class="glass">
+<span class="badge">📸 OUR MEMORIES 📸</span>
+<h1>Us, Always Us 💖</h1>
+<p class="small">Tap any photo to open it full</p>
+<div class="gallery"><img src="pic1.jpg" onclick="openPic('pic1.jpg')"><img src="pic2.jpg" onclick="openPic('pic2.jpg')"><img src="pic3.jpg" onclick="openPic('pic3.jpg')"></div>
+<div class="gallery"><img src="pic4.jpg" onclick="openPic('pic4.jpg')"><img src="pic5.jpg" onclick="openPic('pic5.jpg')"><img src="pic6.jpg" onclick="openPic('pic6.jpg')"></div>
+<div class="gallery"><img src="pic7.jpg" onclick="openPic('pic7.jpg')"><img src="pic1.jpg" onclick="openPic('pic1.jpg')"><img src="pic2.jpg" onclick="openPic('pic2.jpg')"></div>
+<button class="btn-pink" onclick="go1()">Back To Start 💖</button>
+<div class="dots"><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot"></div><div class="dot on"></div></div>
+</div>
+</div>
+
+<video id="s1" playsinline preload="auto" style="display:none"><source src="sound1.mp4" type="video/mp4"></video>
+<video id="s2" playsinline preload="auto" style="display:none"><source src="sound2.mp4" type="video/mp4"></video>
+
+<script>
+function hideAll(){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'))}
+function go1(){pauseAll();hideAll();document.getElementById('page1').classList.add('active')}
+function go2(){pauseAll();hideAll();document.getElementById('page2').classList.add('active')}
+function go3(){pauseAll();hideAll();document.getElementById('page3').classList.add('active')}
+function go4(){pauseAll();hideAll();document.getElementById('page4').classList.add('active')}
+function go5(){pauseAll();hideAll();document.getElementById('page5').classList.add('active')}
+function pauseAll(){try{document.getElementById('s1').pause()}catch(e){} try{document.getElementById('s2').pause()}catch(e){}}
+function play1(){let a=document.getElementById('s1');document.getElementById('s2').pause();a.currentTime=0;a.muted=false;a.volume=1;a.play().catch(()=>alert('Sound not found! Check file name is sound1.mp4'))}
+function play2(){let a=document.getElementById('s2');document.getElementById('s1').pause();a.currentTime=0;a.muted=false;a.volume=1;a.play().catch(()=>alert('Sound not found! Check file name is sound2.mp4'))}
+function openPic(src){window.open(src,'_blank')}
+function popBalloon(el){el.classList.add('pop');setTimeout(()=>el.style.display='none',300);confettiBurst()}
+function confettiBurst(){for(let i=0;i<25;i++){let c=document.createElement('div');c.className='confetti';c.innerHTML=['🎉','💖','✨','🎈','💋'][Math.floor(Math.random()*5)];c.style.left=Math.random()*100+'vw';c.style.fontSize=(14+Math.random()*14)+'px';c.style.animationDuration=(2+Math.random()*2)+'s';document.body.appendChild(c);setTimeout(()=>c.remove(),3500)}}
+let cakeCut=false;
+function cutCake(){if(cakeCut) return;cakeCut=true;document.getElementById('cake').innerHTML='🍰';document.getElementById('cakeMsg').style.display='block';confettiBurst();confettiBurst();setTimeout(()=>{alert('Happy Birthday Ayna! Cake Cut By Ayesha 🫀')},400)}
+function updateTimer(){let now=new Date();let target=new Date(now.getFullYear(),0,30,0,0,0);if(now>target) target=new Date(now.getFullYear()+1,0,30,0,0,0);let diff=target-now;let d=Math.floor(diff/(1000*60*60*24));let h=Math.floor((diff%(1000*60*60*24))/(1000*60*60));let m=Math.floor((diff%(1000*60*60))/(1000*60));let sec=Math.floor((diff%(1000*60))/1000);document.getElementById('d').innerText=String(d).padStart(2,'0');document.getElementById('h').innerText=String(h).padStart(2,'0');document.getElementById('m').innerText=String(m).padStart(2,'0');document.getElementById('s').innerText=String(sec).padStart(2,'0')}
+updateTimer();setInterval(updateTimer,1000);
+</script>
+</body>
+  </html>
